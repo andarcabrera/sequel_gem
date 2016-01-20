@@ -6,7 +6,7 @@ module GameDB
     DB = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>'ttt_db_anda')
 
     def self.all_games
-      DB[:games].all
+      DB[:games]
     end
 
     def self.add_game(info)
