@@ -2,6 +2,8 @@
 
 require 'Open3'
 
+stdin, stdout = Open3.popen3('dc')
+
 stdin.puts( "psql --list | grep test1" )
 p stdout.gets
 
