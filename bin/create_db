@@ -14,6 +14,7 @@ Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
     db.create_table :games do
       primary_key :id
       String :board
+      String :markers
     end
   }
 

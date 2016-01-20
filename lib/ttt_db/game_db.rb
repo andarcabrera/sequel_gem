@@ -10,8 +10,8 @@ module GameDB
       DB[:games]
     end
 
-    def self.add_game(info)
-      SequelCon.all_games.insert(:board => info)
+    def self.add_game(board, markers)
+      SequelCon.all_games.insert(:board => board, :markers => markers)
     end
 
   end
