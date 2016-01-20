@@ -2,7 +2,7 @@
 
 require 'Open3'
 require 'sequel'
-require_relative '../ttt_db/game_db'
+require_relative '../lib/ttt_db/game_db'
 
 cmd = "psql --list | grep ttt_anda_db"
 
