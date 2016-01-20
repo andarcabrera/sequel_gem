@@ -1,7 +1,5 @@
 require 'sequel'
 
-
-
 module GameDB
   class SequelCon
 
@@ -11,7 +9,7 @@ module GameDB
       DB[:games].all
     end
 
-    def add_game(info)
+    def self.add_game(info)
       SequelCon.all_games.insert(:board => info)
     end
 
