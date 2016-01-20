@@ -16,6 +16,8 @@ Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
       primary_key :id
       String :board
     end
+
+    DB.disconnect
   end
 end
 
