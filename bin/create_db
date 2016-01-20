@@ -1,3 +1,9 @@
 #!/usr/bin/env ruby
 
-system( "createdb test2" )
+require 'Open3'
+
+stdin.puts( "psql --list | grep test1" )
+p stdout.gets
+
+stdin.puts( "psql --list | grep test5" )
+p stdout.gets
