@@ -3,7 +3,7 @@ require 'sequel'
 module GameDB
   class SequelCon
 
-    DB = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>'ttt_anda_db')
+    DB = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>'ttt_db_anda')
 
     def self.all_games
       DB[:games].all
