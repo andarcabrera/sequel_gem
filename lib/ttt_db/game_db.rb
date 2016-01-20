@@ -1,3 +1,4 @@
+require 'pg'
 require 'sequel'
 
 module GameDB
