@@ -8,7 +8,7 @@ module GameDB
     end
 
     def self.all_games
-      DB[:games]
+      DB[:games].all
     end
 
     def add_game(info)
