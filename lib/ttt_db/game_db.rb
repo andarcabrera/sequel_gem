@@ -1,12 +1,21 @@
 require 'sequel'
 
- DB = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>'test1')
+module GameDB
+  class SequelCon
 
-# DB.create_table :games do
-#   primary_key :id
-#   String :board
-# end
+    def initialize
+      DB = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>'ttt_anda_db')
+    end
 
-games = DB[:games]
+    def self.all_games
+      DB[:games]
+    end
+
+    def add_game(info)
+      SequelCon.all_games.insert(:board => info)
+    end
+
+  end
+end
 
 

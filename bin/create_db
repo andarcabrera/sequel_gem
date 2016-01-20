@@ -1,11 +1,22 @@
 #!/usr/bin/env ruby
 
 require 'Open3'
+require 'sequel'
+require_relative '../ttt_db/game_db'
 
-stdin, stdout = Open3.popen3('dc')
+cmd = "psql --list | grep ttt_anda_db"
 
-stdin.puts( "psql --list | grep test1" )
-p stdout.gets
+Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+  if stdout.read.match(/ttt_anda_db/).nil?
+    system('createdb ttt_anda_db')
 
-stdin.puts( "psql --list | grep test5" )
-p stdout.gets
+    DB = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>'ttt_anda_db')
+
+    DB.create_table :games do
+      primary_key :id
+      String :board
+    end
+  end
+end
+
+GameDB::SequelCon.add_game('test game')
