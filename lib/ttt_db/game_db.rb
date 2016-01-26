@@ -11,7 +11,7 @@ module GameDB
     end
 
     def self.save_game(board, markers)
-      SequelCon.all_games.insert(:board => board, :markers => markers)
+      SequelConnection.all_games.insert(:board => board, :markers => markers)
     end
 
   end
