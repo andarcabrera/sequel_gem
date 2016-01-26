@@ -3,20 +3,20 @@
 require 'Open3'
 require 'sequel'
 
-cmd = "psql --list | grep ttt_db_anda"
+    db_name = ARGV[0]
+    cmd = "psql --list | grep #{db_name}"
 
-Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
-  if stdout.read.match(/ttt_db_anda/).nil?
-    system('createdb ttt_db_anda')
+    Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
+      if stdout.read.match(/#{db_name}/).nil?
+         system("createdb #{db_name}")
 
-    Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>'ttt_db_anda') {|db|
+    Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>"#db_name") {|db|
 
     db.create_table :games do
       primary_key :id
       String :board
       String :markers
     end
-  }
+      }
+   end
 
-  end
-end

@@ -4,16 +4,27 @@ require 'sequel'
 module GameDB
   class SequelConnection
 
-    DB = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>'ttt_db_anda')
-
-    def self.all_games
-      DB[:games]
+    def initialize(db_name)
+      @db_name = db_name
+      @db = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=> @db_name)
     end
 
-    def self.save_game(board, markers)
-      SequelConnection.all_games.insert(:board => board, :markers => markers)
+
+    def all_games
+      @db[:games]
     end
 
+    def save_game(board, markers)
+      @db[:games].insert(:board => board, :markers => markers)
+    end
+
+    def db_name
+      @db_name
+    end
+
+    def disconnect
+      @db.disconnect
+    end
   end
 end
 
