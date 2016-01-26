@@ -9,13 +9,15 @@ require 'sequel'
       if stdout.read.match(/#{db_name}/).nil?
          system("createdb #{db_name}")
 
-         Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>"#{db_name}") {|db|
+        DB =  Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=>"#{db_name}")
 
-         db.create_table :games do
+         DB.create_table :games do
           primary_key :id
           String :board
           String :markers
          end
-      }
+
+         DB.disconnect
+
       end
     end
