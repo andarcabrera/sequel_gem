@@ -6,16 +6,15 @@ module GameDB
 
     def initialize(db_name)
       @db_name = db_name
-      @db = Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=> @db_name)
     end
 
 
     def all_games
-      @db[:games]
+      db[:games]
     end
 
     def save_game(board, markers)
-      @db[:games].insert(:board => board, :markers => markers)
+      db[:games].insert(:board => board, :markers => markers)
     end
 
     def db_name
@@ -23,8 +22,16 @@ module GameDB
     end
 
     def disconnect
-      @db.disconnect
+      db.disconnect
     end
+
+    private
+
+
+    def db
+      @db ||= Sequel.connect(:adapter=>'postgres', :host=>'localhost', :database=> @db_name)
+    end
+
   end
 end
 
