@@ -4,10 +4,11 @@ require 'sequel'
 module GameDB
   class SequelConnection
 
+    attr_reader :db_name
+
     def initialize(db_name)
       @db_name = db_name
     end
-
 
     def all_games
       db[:games]
@@ -15,10 +16,6 @@ module GameDB
 
     def save_game(board, markers)
       db[:games].insert(:board => board, :markers => markers)
-    end
-
-    def db_name
-      @db_name
     end
 
     def disconnect

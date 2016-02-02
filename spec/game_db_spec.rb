@@ -36,7 +36,7 @@ describe "DB::SequelConnection" do
       test_db.save_game(board2, markers2)
 
 
-      expect(test_db.all_games.count).to eq(2)
+      expect(test_db.all_games.first[:board]).to eq("(A,A,A,B,4,5,6,7,B)")
       test_db.disconnect
     end
   end
@@ -45,6 +45,14 @@ describe "DB::SequelConnection" do
     it "returns the name of the data base" do
 
       expect(test_db.db_name).to eq('test_ttt')
+      test_db.disconnect
+    end
+  end
+
+  describe "#all_games" do
+    it "returns all games in the db" do
+
+      expect(test_db.all_games.count).to eq(2)
       test_db.disconnect
     end
   end
