@@ -18,6 +18,11 @@ module GameDB
       db[:games].insert(:board => board, :markers => markers)
     end
 
+    def get_game(game_number)
+      all_games[:id => game_number]
+
+    end
+
     def disconnect
       db.disconnect
     end

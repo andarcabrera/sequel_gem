@@ -41,6 +41,14 @@ describe "DB::SequelConnection" do
     end
   end
 
+  describe "#get_game" do
+    it "selects the specified game" do
+
+      expect(test_db.get_game(1)).to eq({:id=>1, :board=>"(A,A,A,B,4,5,6,7,B)", :markers=>"(A,B)"})
+      test_db.disconnect
+    end
+  end
+
   describe "#db_name" do
     it "returns the name of the data base" do
 
